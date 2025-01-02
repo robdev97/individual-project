@@ -155,8 +155,6 @@ public class CircleAndCrossGameTestSuite {
     void testComputerMakesValidMove() {
         // Given
         GameBoard gameBoard = new GameBoard(3);
-
-        // Mockowanie generatora losowego
         Random mockRandom = Mockito.mock(Random.class);
         Mockito.when(mockRandom.nextInt(3)).thenReturn(1, 1); // Komputer zawsze wybierze (1, 1)
 
@@ -175,10 +173,8 @@ public class CircleAndCrossGameTestSuite {
         // Given
         GameBoard gameBoard = new GameBoard(3);
         gameBoard.makeMove(1, 1, 'X'); // Zajmujemy pole (1, 1)
-
-        // Mockowanie generatora losowego
         Random mockRandom = Mockito.mock(Random.class);
-        Mockito.when(mockRandom.nextInt(3)).thenReturn(1, 1, 0, 0); // Komputer spróbuje (1, 1), potem wybierze (0, 0)
+        Mockito.when(mockRandom.nextInt(3)).thenReturn(1, 1, 0, 0);
 
         ComputerIsPlayer computerPlayer = new ComputerIsPlayer('O', mockRandom);
 

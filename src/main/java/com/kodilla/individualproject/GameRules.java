@@ -10,18 +10,16 @@ public class GameRules {
         this.winCondition = winCondition;
     }
 
-    // Sprawdzanie warunków zwycięstwa
     public boolean checkWinner(char playerSymbol) {
         int size = board.length;
 
-        // Sprawdzenie wierszy i kolumn
+
         for (int i = 0; i < size; i++) {
             if (checkLine(playerSymbol, i, 0, 0, 1) || checkLine(playerSymbol, 0, i, 1, 0)) {
                 return true;
             }
         }
 
-        // Sprawdzenie przekątnych
         return checkLine(playerSymbol, 0, 0, 1, 1) || checkLine(playerSymbol, 0, size - 1, 1, -1);
     }
 

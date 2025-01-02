@@ -18,7 +18,6 @@ public class ComputerIsPlayer {
         int row;
         int col;
 
-        // Losowanie wolnego pola
         do {
             row = random.nextInt(size);
             col = random.nextInt(size);

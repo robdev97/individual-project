@@ -42,7 +42,7 @@ public class CircleAndCrossGameApp {
             gameBoard.displayBoard();
 
             if (mode == 1 || (mode == 2 && currentPlayer == 'X')) {
-                // Ruch gracza
+
                 System.out.println("Gracz " + currentPlayer + ", podaj wiersz (0-" + (size - 1) + "):");
                 int row = scanner.nextInt();
                 System.out.println("Gracz " + currentPlayer + ", podaj kolumnę (0-" + (size - 1) + "):");
@@ -53,11 +53,10 @@ public class CircleAndCrossGameApp {
                     continue;
                 }
             } else {
-                // Ruch komputera
+
                 computerPlayer.makeMove(gameBoard);
             }
 
-            // Sprawdzanie warunków zakończenia gry
             if (gameLogic.checkWinner(currentPlayer)) {
                 gameBoard.displayBoard();
                 System.out.println((mode == 2 && currentPlayer == 'O' ? "Komputer" : "Gracz " + currentPlayer) + " wygrywa! Gratulacje!");
@@ -68,14 +67,13 @@ public class CircleAndCrossGameApp {
                 break;
             }
 
-            // Zmiana gracza
             currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
         }
 
         System.out.println("Czy chcesz zagrać ponownie? (tak/nie)");
         String answer = scanner.next();
         if (answer.equalsIgnoreCase("tak")) {
-            main(null); // Restart gry
+            main(null);
         } else {
             System.out.println("Dziękujemy za grę!");
             scanner.close();
