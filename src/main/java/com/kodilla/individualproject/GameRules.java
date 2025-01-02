@@ -3,31 +3,43 @@ package com.kodilla.individualproject;
 public class GameRules {
 
     private final char[][] board;
+    private final int winCondition;
 
-    public GameRules(char[][] board) {
+    public GameRules(char[][] board, int winCondition) {
         this.board = board;
+        this.winCondition = winCondition;
     }
 
+    // Sprawdzanie warunków zwycięstwa
     public boolean checkWinner(char playerSymbol) {
-        for (int i = 0; i < 3; i++) {
-            if (board[i][0] == playerSymbol && board[i][1] == playerSymbol
-                    && board[i][2] == playerSymbol) {
+        int size = board.length;
+
+        // Sprawdzenie wierszy i kolumn
+        for (int i = 0; i < size; i++) {
+            if (checkLine(playerSymbol, i, 0, 0, 1) || checkLine(playerSymbol, 0, i, 1, 0)) {
                 return true;
             }
+        }
 
-            if (board[0][i] == playerSymbol && board[1][i] == playerSymbol &&
-                    board[2][i] == playerSymbol) {
-                return true;
-            }
+        // Sprawdzenie przekątnych
+        return checkLine(playerSymbol, 0, 0, 1, 1) || checkLine(playerSymbol, 0, size - 1, 1, -1);
+    }
 
-            if (board[0][0] == playerSymbol && board[1][1] == playerSymbol &&
-                    board[2][2] == playerSymbol) {
-                return true;
-            }
+    private boolean checkLine(char playerSymbol, int startRow, int startCol, int rowStep, int colStep) {
+        int count = 0;
+        int size = board.length;
 
-            if (board[0][2] == playerSymbol && board[1][1] == playerSymbol &&
-                    board[2][0] == playerSymbol) {
-                return true;
+        for (int i = 0; i < size; i++) {
+            int row = startRow + i * rowStep;
+            int col = startCol + i * colStep;
+
+            if (row >= 0 && row < size && col >= 0 && col < size && board[row][col] == playerSymbol) {
+                count++;
+                if (count == winCondition) {
+                    return true;
+                }
+            } else {
+                count = 0;
             }
         }
         return false;
@@ -36,7 +48,9 @@ public class GameRules {
     public boolean isDraw() {
         for (char[] row : board) {
             for (char cell : row) {
-                if (cell == ' ') return false;
+                if (cell == ' ') {
+                    return false;
+                }
             }
         }
         return true;
