@@ -12,7 +12,7 @@ public class ComputerIsPlayer {
         this.random = random;
     }
 
-    public void makeMove(GameBoard gameBoard) {
+    public void computerMove(GameBoard gameBoard) {
         char[][] board = gameBoard.getBoard();
         int size = board.length;
         int row;
@@ -24,7 +24,7 @@ public class ComputerIsPlayer {
         } while (board[row][col] != ' ');
 
         gameBoard.makeMove(row, col, symbol);
-        System.out.println("Komputer (" + symbol + ") zagrał na pozycji: [" + row + ", " + col + "]");
+        System.out.println("The computer (" + symbol + ") played the position: [" + row + ", " + col + "]");
     }
 }
 

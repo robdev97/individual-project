@@ -7,7 +7,7 @@ public class GameBoard {
     public GameBoard(int size) {
 
         if (size < 3) {
-            throw new IllegalArgumentException("Minimalny rozmiar planszy to 3x3.");
+            throw new IllegalArgumentException("The minimum board size is 3x3.");
         }
         this.board = new char[size][size];
         for (int i = 0; i < size; i++) {
@@ -39,11 +39,11 @@ public class GameBoard {
         int size = board.length;
 
         if (row < 0 || row >= size || col < 0 || col >= size) {
-            System.out.println("Nieprawidłowe współrzędne. Wprowadź wartości od 0 do 2.");
+            System.out.println("Incorrect coordinates. Enter a value from 0 to 2.");
             return false;
         }
         if (board[row][col] != ' ') {
-            System.out.println("To pole jest już zajęte. Wybierz inne pole.");
+            System.out.println("This field is already occupied. Select another field.");
             return false;
         }
         board[row][col] = symbol;
